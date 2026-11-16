@@ -1,0 +1,47 @@
+questions measured in every configuration: 198
+
+Energy and time per question (laptop; mean, 95% bootstrap CI over questions)
+config                    J gross               CI   J net       s   tok/s reps  ratio vs ref              CI
+medilite_Q4_K_M_t1          375.3  [ 325.2,  430.9]   267.9   59.03     3.0    1         1.338  [1.336, 1.340]
+medilite_Q4_K_M_t2          280.5  [ 243.0,  322.2]   213.0   37.64     4.8    2         1.000  [1.000, 1.000]
+medilite_Q4_K_M_t4          295.9  [ 256.4,  339.5]   223.1   41.17     4.3    1         1.055  [1.049, 1.063]
+medilite_Q8_0_t2            288.3  [ 248.6,  332.5]   220.3   38.00     4.7    2         1.028  [1.023, 1.032]
+medilite_Q8_0_t4            284.7  [ 245.9,  327.8]   213.4   38.82     4.6    1         1.015  [1.012, 1.018]
+
+Energy vs prompt length, per configuration: J = a + b * prompt_tokens (OLS; 95% bootstrap CI for b)
+config                     a (J)  b (J/token)                CI     R2
+medilite_Q4_K_M_t1         -8.45       2.1444  [ 2.1072,  2.1601]  1.000
+medilite_Q4_K_M_t2         -6.96       1.6064  [ 1.5808,  1.6172]  1.000
+medilite_Q4_K_M_t4         -6.06       1.6875  [ 1.6610,  1.7051]  0.997
+medilite_Q8_0_t2          -15.75       1.6991  [ 1.6654,  1.7159]  0.999
+medilite_Q8_0_t4          -12.67       1.6620  [ 1.6309,  1.6752]  0.999
+
+Same-question answers across thread counts (determinism check)
+  Q4_K_M   identical answer in all of 3 thread settings on 100.0% of questions
+  Q8_0     identical answer in all of 2 thread settings on 100.0% of questions
+
+Answer fidelity vs Q8_0 and accuracy on the 198 laptop questions (first thread setting of each quant; 95% bootstrap CI)
+  Q4_K_M   acc  67.2 [ 60.6,  73.7]   same answer as Q8_0:  88.9% [ 84.3,  92.9]
+  Q8_0     acc  66.2 [ 59.6,  72.7]
+  Accuracy differences between quants on this set are not resolved (CI width ~13 points);
+  report fidelity (agreement with the reference) as the quality measure.
+
+Prefill and decode (one prompt per benchmark)
+config                   prefill tok/s  J/prompt tok  decode tok/s  J/gen tok  decode W
+medilite_Q4_K_M_t1                 3.0         2.143          1.99      3.510      7.00
+medilite_Q4_K_M_t2                 4.6         1.605          2.92      2.785      8.13
+medilite_Q4_K_M_t4                 4.3         1.665          2.86      2.817      8.06
+medilite_Q8_0_t2                   4.4         1.676          2.19      3.885      8.51
+medilite_Q8_0_t4                   4.6         1.627          2.29      3.789      8.67
+
+Run-to-run repeat (Q4_K_M and Q8_0, 2 threads; option scoring 198 questions, generation 9 prompts)
+  energy per question, run 2 / run 1:  Q4_K_M 0.984 [0.983, 0.986]   Q8_0 0.992 [0.989, 0.994]
+  time per question,   run 2 / run 1:  Q4_K_M 0.981                  Q8_0 0.993
+  answers identical between runs: 100% for both
+  Q8_0 / Q4_K_M energy per question:  run 1 1.024 [1.018, 1.030]   run 2 1.032 [1.028, 1.036]   both runs 1.028 [1.023, 1.032]
+  generation energy per token, run 2 / run 1:  Q4_K_M 0.982   Q8_0 0.972
+  prompt energy per token,     run 2 / run 1:  Q4_K_M 0.974   Q8_0 0.946
+  generation time per token,   run 2 / run 1:  Q4_K_M 0.914   Q8_0 0.923
+  Q8_0 / Q4_K_M generation energy per token:  run 1 1.395   run 2 1.380
+  Q8_0 / Q4_K_M generation time per token:    run 1 1.333   run 2 1.346
+  Q8_0 / Q4_K_M prompt energy per token:      run 1 1.022   run 2 0.993

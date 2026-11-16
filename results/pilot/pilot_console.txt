@@ -1,0 +1,143 @@
+{"label": "medilite_Q8_0_t4", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q8_0.gguf", "load_seconds": 206.39110347800306, "threads": 4, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q8_0_t4 / loglik] idle package power 1.81 W
+[medilite_Q8_0_t4 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q8_0_t4 / decode] idle package power 1.80 W
+  medmcqa                      prefill    6.4 tok/s  decode  2.93 tok/s  3.62 J/token
+  medqa_4options               prefill    6.5 tok/s  decode  2.89 tok/s  3.63 J/token
+  mmlu_anatomy                 prefill    6.5 tok/s  decode  2.95 tok/s  3.57 J/token
+  mmlu_clinical_knowledge      prefill    6.5 tok/s  decode  2.96 tok/s  3.54 J/token
+  mmlu_college_biology         prefill    6.5 tok/s  decode  2.96 tok/s  3.53 J/token
+  mmlu_college_medicine        prefill    5.4 tok/s  decode  2.40 tok/s  4.15 J/token
+  mmlu_medical_genetics        prefill    5.5 tok/s  decode  2.69 tok/s  3.62 J/token
+  mmlu_professional_medicine   prefill    5.1 tok/s  decode  2.60 tok/s  3.73 J/token
+  pubmedqa                     prefill    5.0 tok/s  decode  2.42 tok/s  3.79 J/token
+{"label": "medilite_Q5_K_M_t4", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q5_K_M.gguf", "load_seconds": 94.32611379498849, "threads": 4, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q5_K_M_t4 / loglik] idle package power 1.87 W
+[medilite_Q5_K_M_t4 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q5_K_M_t4 / decode] idle package power 1.80 W
+  medmcqa                      prefill    4.3 tok/s  decode  3.23 tok/s  3.14 J/token
+  medqa_4options               prefill    4.3 tok/s  decode  3.32 tok/s  3.05 J/token
+  mmlu_anatomy                 prefill    4.3 tok/s  decode  3.29 tok/s  3.05 J/token
+  mmlu_clinical_knowledge      prefill    4.3 tok/s  decode  3.30 tok/s  3.04 J/token
+  mmlu_college_biology         prefill    4.1 tok/s  decode  3.16 tok/s  3.05 J/token
+  mmlu_college_medicine        prefill    3.7 tok/s  decode  2.52 tok/s  3.63 J/token
+  mmlu_medical_genetics        prefill    3.7 tok/s  decode  2.79 tok/s  3.11 J/token
+  mmlu_professional_medicine   prefill    3.5 tok/s  decode  3.02 tok/s  3.20 J/token
+  pubmedqa                     prefill    3.6 tok/s  decode  2.78 tok/s  3.25 J/token
+{"label": "medilite_Q5_K_M_t2", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q5_K_M.gguf", "load_seconds": 95.7454226470145, "threads": 2, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q5_K_M_t2 / loglik] idle package power 1.76 W
+[medilite_Q5_K_M_t2 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q5_K_M_t2 / decode] idle package power 1.77 W
+  medmcqa                      prefill    4.0 tok/s  decode  3.18 tok/s  3.09 J/token
+  medqa_4options               prefill    4.0 tok/s  decode  3.15 tok/s  3.08 J/token
+  mmlu_anatomy                 prefill    4.0 tok/s  decode  3.16 tok/s  3.07 J/token
+  mmlu_clinical_knowledge      prefill    4.0 tok/s  decode  3.17 tok/s  3.05 J/token
+  mmlu_college_biology         prefill    3.9 tok/s  decode  3.17 tok/s  3.08 J/token
+  mmlu_college_medicine        prefill    3.6 tok/s  decode  2.55 tok/s  3.58 J/token
+  mmlu_medical_genetics        prefill    3.4 tok/s  decode  2.89 tok/s  3.10 J/token
+  mmlu_professional_medicine   prefill    3.5 tok/s  decode  2.77 tok/s  3.25 J/token
+  pubmedqa                     prefill    3.5 tok/s  decode  2.87 tok/s  3.22 J/token
+{"label": "medilite_Q5_K_M_t1", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q5_K_M.gguf", "load_seconds": 53.41374601901043, "threads": 1, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q5_K_M_t1 / loglik] idle package power 1.76 W
+[medilite_Q5_K_M_t1 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q5_K_M_t1 / decode] idle package power 1.84 W
+  medmcqa                      prefill    2.0 tok/s  decode  1.73 tok/s  4.08 J/token
+  medqa_4options               prefill    2.0 tok/s  decode  1.72 tok/s  4.08 J/token
+  mmlu_anatomy                 prefill    2.0 tok/s  decode  1.73 tok/s  4.06 J/token
+  mmlu_clinical_knowledge      prefill    2.0 tok/s  decode  1.73 tok/s  4.04 J/token
+  mmlu_college_biology         prefill    2.0 tok/s  decode  1.72 tok/s  4.03 J/token
+  mmlu_college_medicine        prefill    2.0 tok/s  decode  1.51 tok/s  4.60 J/token
+  mmlu_medical_genetics        prefill    2.0 tok/s  decode  1.72 tok/s  4.04 J/token
+  mmlu_professional_medicine   prefill    2.0 tok/s  decode  1.68 tok/s  4.17 J/token
+  pubmedqa                     prefill    2.0 tok/s  decode  1.68 tok/s  4.16 J/token
+{"label": "medilite_Q4_K_M_t4", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q4_K_M.gguf", "load_seconds": 122.45196187699912, "threads": 4, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q4_K_M_t4 / loglik] idle package power 1.78 W
+[medilite_Q4_K_M_t4 / loglik] 5 new rows
+[medilite_Q4_K_M_t4 / loglik] prediction agrees with logged 'medilite_q4' on 60.0% of 5 items
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q4_K_M_t4 / decode] idle package power 1.78 W
+  medmcqa                      prefill    6.1 tok/s  decode  3.96 tok/s  2.58 J/token
+  medqa_4options               prefill    6.3 tok/s  decode  3.96 tok/s  2.56 J/token
+  mmlu_anatomy                 prefill    6.2 tok/s  decode  3.96 tok/s  2.56 J/token
+  mmlu_clinical_knowledge      prefill    6.0 tok/s  decode  3.70 tok/s  2.59 J/token
+  mmlu_college_biology         prefill    5.6 tok/s  decode  3.79 tok/s  2.56 J/token
+  mmlu_college_medicine        prefill    5.1 tok/s  decode  2.87 tok/s  3.14 J/token
+  mmlu_medical_genetics        prefill    5.0 tok/s  decode  3.34 tok/s  2.62 J/token
+  mmlu_professional_medicine   prefill    4.9 tok/s  decode  3.15 tok/s  2.79 J/token
+  pubmedqa                     prefill    5.0 tok/s  decode  3.16 tok/s  2.79 J/token
+{"label": "medilite_Q8_0_t1", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q8_0.gguf", "load_seconds": 193.54881084198132, "threads": 1, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q8_0_t1 / loglik] idle package power 1.88 W
+[medilite_Q8_0_t1 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q8_0_t1 / decode] idle package power 1.88 W
+  medmcqa                      prefill    3.1 tok/s  decode  1.61 tok/s  4.60 J/token
+  medqa_4options               prefill    3.1 tok/s  decode  1.61 tok/s  4.58 J/token
+  mmlu_anatomy                 prefill    3.1 tok/s  decode  1.61 tok/s  4.57 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  1.62 tok/s  4.55 J/token
+  mmlu_college_biology         prefill    3.1 tok/s  decode  1.62 tok/s  4.56 J/token
+  mmlu_college_medicine        prefill    2.9 tok/s  decode  1.43 tok/s  5.09 J/token
+  mmlu_medical_genetics        prefill    3.1 tok/s  decode  1.61 tok/s  4.55 J/token
+  mmlu_professional_medicine   prefill    3.0 tok/s  decode  1.56 tok/s  4.67 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  1.56 tok/s  4.66 J/token
+{"label": "medilite_Q4_K_M_t1", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q4_K_M.gguf", "load_seconds": 85.91033248699387, "threads": 1, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q4_K_M_t1 / loglik] idle package power 1.77 W
+[medilite_Q4_K_M_t1 / loglik] 5 new rows
+[medilite_Q4_K_M_t1 / loglik] prediction agrees with logged 'medilite_q4' on 60.0% of 5 items
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q4_K_M_t1 / decode] idle package power 1.76 W
+  medmcqa                      prefill    3.0 tok/s  decode  2.06 tok/s  3.43 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  2.05 tok/s  3.43 J/token
+  mmlu_anatomy                 prefill    3.0 tok/s  decode  2.05 tok/s  3.43 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  2.06 tok/s  3.44 J/token
+  mmlu_college_biology         prefill    3.1 tok/s  decode  2.04 tok/s  3.42 J/token
+  mmlu_college_medicine        prefill    2.9 tok/s  decode  1.80 tok/s  3.91 J/token
+  mmlu_medical_genetics        prefill    3.0 tok/s  decode  2.09 tok/s  3.35 J/token
+  mmlu_professional_medicine   prefill    3.0 tok/s  decode  2.00 tok/s  3.50 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  2.00 tok/s  3.51 J/token
+{"label": "medilite_Q8_0_t2", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q8_0.gguf", "load_seconds": 154.38046750301146, "threads": 2, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q8_0_t2 / loglik] idle package power 1.79 W
+[medilite_Q8_0_t2 / loglik] 5 new rows
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q8_0_t2 / decode] idle package power 1.82 W
+  medmcqa                      prefill    6.0 tok/s  decode  2.78 tok/s  3.69 J/token
+  medqa_4options               prefill    6.0 tok/s  decode  2.80 tok/s  3.64 J/token
+  mmlu_anatomy                 prefill    6.1 tok/s  decode  2.79 tok/s  3.63 J/token
+  mmlu_clinical_knowledge      prefill    6.0 tok/s  decode  2.80 tok/s  3.61 J/token
+  mmlu_college_biology         prefill    5.8 tok/s  decode  2.77 tok/s  3.63 J/token
+  mmlu_college_medicine        prefill    5.1 tok/s  decode  2.30 tok/s  4.18 J/token
+  mmlu_medical_genetics        prefill    5.2 tok/s  decode  2.56 tok/s  3.66 J/token
+  mmlu_professional_medicine   prefill    4.8 tok/s  decode  2.57 tok/s  3.78 J/token
+  pubmedqa                     prefill    4.8 tok/s  decode  2.53 tok/s  3.79 J/token
+{"label": "medilite_Q4_K_M_t2", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q4_K_M.gguf", "load_seconds": 95.62874511600239, "threads": 2, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q4_K_M_t2 / loglik] idle package power 1.78 W
+[medilite_Q4_K_M_t2 / loglik] 5 new rows
+[medilite_Q4_K_M_t2 / loglik] prediction agrees with logged 'medilite_q4' on 60.0% of 5 items
+written to pilot.csv and pilot_runs.jsonl
+[medilite_Q4_K_M_t2 / decode] idle package power 1.79 W
+  medmcqa                      prefill    5.9 tok/s  decode  3.80 tok/s  2.59 J/token
+  medqa_4options               prefill    6.1 tok/s  decode  3.77 tok/s  2.58 J/token
+  mmlu_anatomy                 prefill    6.0 tok/s  decode  3.78 tok/s  2.58 J/token
+  mmlu_clinical_knowledge      prefill    6.1 tok/s  decode  3.78 tok/s  2.57 J/token
+  mmlu_college_biology         prefill    5.9 tok/s  decode  3.58 tok/s  2.59 J/token
+  mmlu_college_medicine        prefill    5.1 tok/s  decode  3.03 tok/s  3.06 J/token
+  mmlu_medical_genetics        prefill    5.1 tok/s  decode  3.39 tok/s  2.62 J/token
+  mmlu_professional_medicine   prefill    5.1 tok/s  decode  3.35 tok/s  2.72 J/token
+  pubmedqa                     prefill    5.0 tok/s  decode  3.24 tok/s  2.75 J/token
+system: {"governor": "schedutil", "epp": null, "no_turbo": "1", "cur_mhz": [1596, 1527, 1596, 1596], "pkg_temp_c": 53.0, "mains_online": ["1"], "mem_available_gib": 4.67, "swap_used_gib": 0.7, "loadavg": "1.08 1.98 2.52 3/582 180065"}
+pass 1 order: ['Q8_0/t4', 'Q5_K_M/t4', 'Q5_K_M/t2', 'Q5_K_M/t1', 'Q4_K_M/t4', 'Q8_0/t1', 'Q4_K_M/t1', 'Q8_0/t2', 'Q4_K_M/t2']
+
+projection for the full set (198 questions, per pass; model load and idle included):
+  medilite_Q8_0_t4            3.33 h
+  medilite_Q5_K_M_t4          2.33 h
+  medilite_Q5_K_M_t2          2.43 h
+  medilite_Q5_K_M_t1          3.21 h
+  medilite_Q4_K_M_t4          2.27 h
+  medilite_Q8_0_t1            3.89 h
+  medilite_Q4_K_M_t1          2.76 h
+  medilite_Q8_0_t2            2.62 h
+  medilite_Q4_K_M_t2          2.01 h
+  total per pass (loglik only, excluding decode and cooldowns) ~ 24.8 h
