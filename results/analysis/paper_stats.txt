@@ -1,0 +1,93 @@
+questions: 198; settings x repetitions: [('medilite_Q4_K_M_t1', '1'), ('medilite_Q4_K_M_t1', '2'), ('medilite_Q4_K_M_t2', '1'), ('medilite_Q4_K_M_t2', '2'), ('medilite_Q4_K_M_t4', '1'), ('medilite_Q8_0_t1', '1'), ('medilite_Q8_0_t2', '1'), ('medilite_Q8_0_t2', '2'), ('medilite_Q8_0_t4', '1')]
+
+== Load validity: every accepted load of a format gives identical scores
+  ('medilite_Q4_K_M_t1', '2') vs ('medilite_Q4_K_M_t1', '1'): 198/198 identical
+  ('medilite_Q4_K_M_t2', '1') vs ('medilite_Q4_K_M_t1', '1'): 198/198 identical
+  ('medilite_Q4_K_M_t2', '2') vs ('medilite_Q4_K_M_t1', '1'): 198/198 identical
+  ('medilite_Q4_K_M_t4', '1') vs ('medilite_Q4_K_M_t1', '1'): 198/198 identical
+  ('medilite_Q8_0_t2', '1') vs ('medilite_Q8_0_t1', '1'): 198/198 identical
+  ('medilite_Q8_0_t2', '2') vs ('medilite_Q8_0_t1', '1'): 198/198 identical
+  ('medilite_Q8_0_t4', '1') vs ('medilite_Q8_0_t1', '1'): 198/198 identical
+  rejected load (Q8_0, 1 thread, session 3): identical scores 0/198, same answer 53/198 -> excluded
+
+== Table III, option scoring (first measurement)
+  Q4_K_M  1 thr:  375.3 J/q   59.0 s/q  6.36 W  3.03 prompt tok/s
+  Q4_K_M  2 thr:  282.7 J/q   38.0 s/q  7.44 W  4.71 prompt tok/s
+  Q4_K_M  4 thr:  295.9 J/q   41.2 s/q  7.19 W  4.35 prompt tok/s
+  Q8_0    1 thr:  388.4 J/q   60.0 s/q  6.47 W  2.98 prompt tok/s
+  Q8_0    2 thr:  289.4 J/q   38.1 s/q  7.59 W  4.69 prompt tok/s
+  Q8_0    4 thr:  284.7 J/q   38.8 s/q  7.33 W  4.61 prompt tok/s
+
+== Run-to-run, option scoring (second / first measurement)
+  Q4_K_M 1 thr: +0.3% [+0.2, +0.3]
+  Q4_K_M 2 thr: -1.6% [-1.7, -1.5]
+  Q8_0 2 thr: -0.8% [-1.1, -0.6]
+
+== Q8_0 vs Q4_K_M, option scoring energy per question
+  1 thr: +3.5% [+2.8, +4.2]
+  2 thr: +2.4% [+1.8, +3.0]
+  4 thr: -3.8% [-4.6, -3.2]
+  2 thr, second measurement: +3.2% [+2.8, +3.6]
+
+== Thread count, option scoring (relative to 2 threads, same format)
+  Q4_K_M 1 thr: energy +32.7% [+32.5, +33.0], time +55.3%
+  Q4_K_M 4 thr: energy +4.7% [+4.1, +5.5], time +8.3%
+  Q8_0 1 thr: energy +34.2% [+33.6, +34.7], time +57.5%
+  Q8_0 4 thr: energy -1.6% [-1.9, -1.3], time +1.8%
+  Q4_K_M 1 thr, second measurement: energy +35.2% [+35.0, +35.5], time +58.5%
+
+== Energy model: E = a + b * prompt tokens (OLS), first measurement
+  Q4_K_M 1 thr: b = 2.144 J/token [2.107, 2.161], a = -8.4 J, R2 = 0.9996
+  Q4_K_M 2 thr: b = 1.619 J/token [1.596, 1.630], a = -7.0 J, R2 = 0.9995
+  Q4_K_M 4 thr: b = 1.687 J/token [1.664, 1.706], a = -6.1 J, R2 = 0.9974
+  Q8_0 1 thr: b = 2.310 J/token [2.273, 2.329], a = -24.9 J, R2 = 0.9991
+  Q8_0 2 thr: b = 1.713 J/token [1.675, 1.737], a = -17.1 J, R2 = 0.9990
+  Q8_0 4 thr: b = 1.662 J/token [1.630, 1.675], a = -12.7 J, R2 = 0.9995
+  mean prompt tokens 179, mean energy at Q4_K_M 2 thr = 0.079 Wh
+
+== Answer changes, Q4_K_M vs Q8_0 (2 threads, first measurement)
+  changed answers 22/198: only Q4 correct 9, only Q8 correct 7, both wrong 6
+  agreement % 88.9 [84.3, 92.9]
+  accuracy % Q4 67.2 [60.6, 73.7], Q8 66.2 [59.6, 72.7]
+  paired difference Q4 - Q8, percentage points 1.0 [-3.0, 5.1]; exact McNemar p = 0.804
+  changed answers by benchmark: {'medmcqa': 5, 'medqa_4options': 3, 'mmlu_anatomy': 5, 'mmlu_college_medicine': 4, 'mmlu_medical_genetics': 1, 'mmlu_professional_medicine': 3, 'pubmedqa': 1}
+
+== Generation benchmark: 27 prompts, 42-1190 prompt tokens, 128 generated tokens each
+  all loads verified: True
+  Q4_K_M: generated text identical at 1, 2 and 4 threads for 27/27 prompts
+  Q8_0: generated text identical at 1, 2 and 4 threads for 27/27 prompts
+
+== Table III, generation
+  Q4_K_M  1 thr: 2.04 tok/s  3.40 J/tok  6.94 W   prompt phase 2.121 J/token
+  Q4_K_M  2 thr: 2.98 tok/s  2.73 J/tok  8.14 W   prompt phase 1.581 J/token
+  Q4_K_M  4 thr: 3.10 tok/s  2.70 J/tok  8.38 W   prompt phase 1.624 J/token
+  Q8_0    1 thr: 1.59 tok/s  4.55 J/tok  7.21 W   prompt phase 2.146 J/token
+  Q8_0    2 thr: 2.15 tok/s  3.83 J/tok  8.24 W   prompt phase 1.656 J/token
+  Q8_0    4 thr: 2.32 tok/s  3.71 J/tok  8.61 W   prompt phase 1.600 J/token
+
+== Q8_0 / Q4_K_M per prompt (mean of per-prompt ratios, bootstrap over prompts)
+  1 thr: generation energy/token +33.6% [+33.1, +34.1]; per-prompt range 1.293-1.362; r(ratio, prompt length) = -0.67; saving of 4-bit 25.2%; time/token ratio 1.285; prompt-phase energy/token -0.0% [-0.6, +0.5]
+  2 thr: generation energy/token +40.6% [+39.9, +41.2]; per-prompt range 1.351-1.440; r(ratio, prompt length) = -0.88; saving of 4-bit 28.9%; time/token ratio 1.388; prompt-phase energy/token +3.2% [+2.4, +4.1]
+  4 thr: generation energy/token +37.2% [+36.5, +37.8]; per-prompt range 1.315-1.391; r(ratio, prompt length) = -0.92; saving of 4-bit 27.1%; time/token ratio 1.335; prompt-phase energy/token -3.1% [-3.9, -2.2]
+  all prompts and thread counts: ratio 1.293-1.440
+
+== Thread count, generation energy per token (relative to 2 threads)
+  Q4_K_M 1 thr: +24.8%
+  Q4_K_M 4 thr: -0.9%
+  Q8_0 1 thr: +18.7%
+  Q8_0 4 thr: -3.3%
+
+== Effective memory bandwidth at 2 threads (file size x generated tokens/s)
+  Q4_K_M: 7.14 GB/s = 28% of 25.6 GB/s
+  Q8_0: 8.73 GB/s = 34% of 25.6 GB/s
+  file size ratio 1.70
+
+== Generation run-to-run: same nine prompts, session 4 / session 1, 2 threads
+  medilite_Q4_K_M_t2: -2.8%
+  medilite_Q8_0_t2: -1.9%
+
+== Swap-in during measured settings (vmstat, sessions 3-4)
+  vmstat_night.txt: medilite_Q8_0_t1 (2026-11-18T05:40): swap-in in 137/195 minutes
+  vmstat_night.txt: medilite_Q4_K_M_t1 (2026-11-18T09:04): swap-in in 9/195 minutes
+  vmstat_night2.txt: medilite_Q8_0_t1 (2026-11-18T19:28): swap-in in 5/198 minutes
+  vmstat_night2.txt: generation period: swap-in in 22/419 minutes

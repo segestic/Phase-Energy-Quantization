@@ -5,6 +5,7 @@ config                    J gross               CI   J net       s   tok/s reps 
 medilite_Q4_K_M_t1          375.3  [ 325.2,  430.9]   267.9   59.03     3.0    1         1.327  [1.325, 1.330]
 medilite_Q4_K_M_t2          282.7  [ 244.9,  324.9]   214.0   38.01     4.7    1         1.000  [1.000, 1.000]
 medilite_Q4_K_M_t4          295.9  [ 256.4,  339.5]   223.1   41.17     4.3    1         1.047  [1.041, 1.055]
+medilite_Q8_0_t1            388.4  [ 334.4,  448.7]   286.0   60.04     3.0    1         1.374  [1.364, 1.382]
 medilite_Q8_0_t2            289.4  [ 249.5,  334.0]   220.6   38.13     4.7    1         1.024  [1.018, 1.030]
 medilite_Q8_0_t4            284.7  [ 245.9,  327.8]   213.4   38.82     4.6    1         1.007  [1.003, 1.011]
 
@@ -13,12 +14,13 @@ config                     a (J)  b (J/token)                CI     R2
 medilite_Q4_K_M_t1         -8.45       2.1444  [ 2.1072,  2.1601]  1.000
 medilite_Q4_K_M_t2         -6.97       1.6190  [ 1.5959,  1.6295]  1.000
 medilite_Q4_K_M_t4         -6.06       1.6875  [ 1.6610,  1.7051]  0.997
-medilite_Q8_0_t2          -17.06       1.7128  [ 1.6743,  1.7358]  0.999
-medilite_Q8_0_t4          -12.67       1.6620  [ 1.6309,  1.6752]  0.999
+medilite_Q8_0_t1          -24.91       2.3099  [ 2.2730,  2.3295]  0.999
+medilite_Q8_0_t2          -17.06       1.7128  [ 1.6760,  1.7363]  0.999
+medilite_Q8_0_t4          -12.67       1.6620  [ 1.6308,  1.6750]  0.999
 
 Same-question answers across thread counts (determinism check)
   Q4_K_M   identical answer in all of 3 thread settings on 100.0% of questions
-  Q8_0     identical answer in all of 2 thread settings on 100.0% of questions
+  Q8_0     identical answer in all of 3 thread settings on 100.0% of questions
 
 Answer fidelity vs Q8_0 and accuracy on the 198 laptop questions (first thread setting of each quant; 95% bootstrap CI)
   Q4_K_M   acc  67.2 [ 60.6,  73.7]   same answer as Q8_0:  88.9% [ 84.3,  92.9]
@@ -28,8 +30,9 @@ Answer fidelity vs Q8_0 and accuracy on the 198 laptop questions (first thread s
 
 Prefill and decode (one prompt per benchmark)
 config                   prefill tok/s  J/prompt tok  decode tok/s  J/gen tok  decode W
-medilite_Q4_K_M_t1                 3.0         2.143          1.99      3.510      7.00
-medilite_Q4_K_M_t2                 4.6         1.605          2.92      2.785      8.13
-medilite_Q4_K_M_t4                 4.3         1.665          2.86      2.817      8.06
-medilite_Q8_0_t2                   4.4         1.676          2.19      3.885      8.51
-medilite_Q8_0_t4                   4.6         1.627          2.29      3.789      8.67
+medilite_Q4_K_M_t1                 3.0         2.121          2.04      3.404      6.94
+medilite_Q4_K_M_t2                 4.6         1.581          2.98      2.727      8.14
+medilite_Q4_K_M_t4                 4.6         1.624          3.10      2.704      8.38
+medilite_Q8_0_t1                   3.0         2.146          1.59      4.547      7.21
+medilite_Q8_0_t2                   4.3         1.656          2.15      3.832      8.24
+medilite_Q8_0_t4                   4.6         1.600          2.32      3.707      8.61

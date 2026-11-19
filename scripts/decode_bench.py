@@ -20,6 +20,7 @@ Usage
 """
 
 import argparse
+import hashlib
 import csv
 import json
 import os
@@ -30,7 +31,7 @@ import numpy as np
 from energy_per_item import Rapl, idle_power
 
 FIELDS = ["config", "threads", "task", "doc_id", "prefill_tokens", "prefill_s", "prefill_j",
-          "decode_tokens", "decode_s", "decode_j", "idle_w"]
+          "decode_tokens", "decode_s", "decode_j", "idle_w", "gen_hash", "load_verified"]
 
 
 def last_logits(llm):
@@ -47,7 +48,11 @@ def main():
     ap.add_argument("--items", default="items.jsonl")
     ap.add_argument("--gen-tokens", type=int, default=128)
     ap.add_argument("--warmup", type=int, default=1)
+    ap.add_argument("--per-task", type=int, default=1,
+                    help="prompts per benchmark, taken in file order (default 1: the first of each task)")
     ap.add_argument("--no-mmap", action="store_true", help="read the whole model into RAM at load time")
+    ap.add_argument("--fingerprint", default=None, help="fingerprints.json: verify the load (see load_check.py)")
+    ap.add_argument("--fingerprint-key", default=None, help="key in fingerprints.json, e.g. Q8_0")
     ap.add_argument("--idle-secs", type=float, default=30.0)
     ap.add_argument("--rapl", default="/sys/class/powercap/intel-rapl:0")
     ap.add_argument("--out", default="decode.csv")
@@ -55,17 +60,17 @@ def main():
 
     from llama_cpp import Llama
 
-    items, seen = [], set()
+    items, count = [], {}
     for line in open(args.items):
         it = json.loads(line)
-        if it["task"] not in seen:
-            seen.add(it["task"])
+        if count.get(it["task"], 0) < args.per_task:
+            count[it["task"]] = count.get(it["task"], 0) + 1
             items.append(it)
 
     done = set()
     if os.path.exists(args.out):
         with open(args.out) as fh:
-            done = {(r["config"], r["task"]) for r in csv.DictReader(fh)}
+            done = {(r["config"], r["task"], str(r["doc_id"])) for r in csv.DictReader(fh)}
     new_file = not os.path.exists(args.out)
     fh = open(args.out, "a", newline="")
     w = csv.DictWriter(fh, fieldnames=FIELDS)
@@ -73,8 +78,14 @@ def main():
         w.writeheader()
 
     rapl = Rapl(args.rapl)
-    llm = Llama(model_path=args.model, n_ctx=args.n_ctx, n_threads=args.threads, n_threads_batch=args.threads,
-                n_gpu_layers=0, logits_all=False, use_mmap=not args.no_mmap, verbose=False)
+    make = lambda: Llama(model_path=args.model, n_ctx=args.n_ctx, n_threads=args.threads, n_threads_batch=args.threads,
+                         n_gpu_layers=0, logits_all=False, use_mmap=not args.no_mmap, verbose=False)
+    if args.fingerprint:
+        from load_check import load_verified
+        all_items = [json.loads(line) for line in open(args.items)]
+        llm, check = load_verified(make, args.model, args.fingerprint, args.fingerprint_key, all_items)
+    else:
+        llm, check = make(), {"verified": None}
     eos = llm.token_eos()
 
     def run(it):
@@ -83,25 +94,28 @@ def main():
         e0, t0 = rapl.read(), time.perf_counter()
         llm.eval(toks)
         t1, e1 = time.perf_counter(), rapl.read()
+        gen = []
         for _ in range(args.gen_tokens):
             logits = last_logits(llm)
             logits[eos] = -np.inf
-            llm.eval([int(np.argmax(logits))])
+            gen.append(int(np.argmax(logits)))
+            llm.eval([gen[-1]])
         t2, e2 = time.perf_counter(), rapl.read()
-        return len(toks), t1 - t0, rapl.joules(e0, e1), t2 - t1, rapl.joules(e1, e2)
+        digest = hashlib.sha256(",".join(map(str, gen)).encode()).hexdigest()[:16]
+        return len(toks), t1 - t0, rapl.joules(e0, e1), t2 - t1, rapl.joules(e1, e2), digest
 
     for it in items[: args.warmup]:
         run(it)
     idle_w = idle_power(rapl, args.idle_secs)
     print(f"[{args.label} / decode] idle package power {idle_w:.2f} W")
     for it in items:
-        if (args.label, it["task"]) in done:
+        if (args.label, it["task"], str(it["doc_id"])) in done:
             continue
-        n, ps, pj, ds, dj = run(it)
+        n, ps, pj, ds, dj, gh = run(it)
         w.writerow(dict(config=args.label, threads=args.threads, task=it["task"], doc_id=it["doc_id"],
                         prefill_tokens=n, prefill_s=f"{ps:.4f}", prefill_j=f"{pj:.4f}",
                         decode_tokens=args.gen_tokens, decode_s=f"{ds:.4f}", decode_j=f"{dj:.4f}",
-                        idle_w=f"{idle_w:.3f}"))
+                        idle_w=f"{idle_w:.3f}", gen_hash=gh, load_verified=check.get("verified")))
         fh.flush()
         print(f"  {it['task']:<28} prefill {n / ps:6.1f} tok/s  decode {args.gen_tokens / ds:5.2f} tok/s  "
               f"{dj / args.gen_tokens:.2f} J/token")

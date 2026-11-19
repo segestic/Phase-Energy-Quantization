@@ -272,6 +272,8 @@ def main():
     ap.add_argument("--rapl", default="/sys/class/powercap/intel-rapl:0")
     ap.add_argument("--limit", type=int, default=None, help="use only the first N items (timing test)")
     ap.add_argument("--ref", default=None, help="log folder name to compare loglik predictions with")
+    ap.add_argument("--fingerprint", default=None, help="fingerprints.json: verify each load (see load_check.py)")
+    ap.add_argument("--fingerprint-key", default=None, help="key in fingerprints.json, e.g. Q8_0")
     ap.add_argument("--seed", type=int, default=1234)
     ap.add_argument("--save-text", default=None, help="optional JSONL file for generated texts")
     ap.add_argument("--out", default="energy_items.csv")
@@ -296,11 +298,14 @@ def main():
         w.writeheader()
     tfh = open(args.save_text, "a") if args.save_text else None
 
-    t_load = time.perf_counter()
-    llm = Llama(model_path=args.model, n_ctx=args.n_ctx, n_threads=args.threads, n_threads_batch=args.threads,
-                n_gpu_layers=0, logits_all=False, seed=args.seed, chat_format=args.chat_format,
-                use_mmap=not args.no_mmap, verbose=False)
-    meta = {"label": args.label, "model": os.path.abspath(args.model), "load_seconds": time.perf_counter() - t_load,
+    from load_check import load_verified
+    make = lambda: Llama(model_path=args.model, n_ctx=args.n_ctx, n_threads=args.threads, n_threads_batch=args.threads,
+                         n_gpu_layers=0, logits_all=False, seed=args.seed, chat_format=args.chat_format,
+                         use_mmap=not args.no_mmap, verbose=False)
+    llm, check = load_verified(make, args.model, args.fingerprint, args.fingerprint_key, items) \
+        if args.fingerprint else (make(), {"verified": None})
+    meta = {"label": args.label, "model": os.path.abspath(args.model), "load_seconds": check.get("load_seconds"),
+            "load_check": check,
             "threads": args.threads, "n_ctx": args.n_ctx, "use_mmap": not args.no_mmap, "cpu": platform.processor() or platform.machine(),
             "python": sys.version.split()[0]}
     try:

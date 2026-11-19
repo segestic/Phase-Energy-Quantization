@@ -1,0 +1,4 @@
+# SHA-256 of the GGUF files used, as published at https://huggingface.co/segestic/MediLITE-QA-GGUF
+# (commit history: both files uploaded 2026-08-29, unchanged since). Local copies verified against these.
+df4a535a65c1822c132dafd6f6a5b2afbbded09020bbcd70dc8919d41ae2ac25  MediLITE-QA.Q4_K_M.gguf  (2393231616 bytes)
+b25d1840ee7681b7c732f209e2af51b217009c01596ed54cb9823b13b68d78ad  MediLITE-QA.Q8_0.gguf    (4061221632 bytes)

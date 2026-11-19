@@ -125,6 +125,8 @@ def main():
     ap.add_argument("--mmap", action="store_true",
                     help="memory-map the model (llama.cpp default). Off by default here: the model is read "
                          "fully into RAM at load time, so timed inference never reads from the drive")
+    ap.add_argument("--mem-margin", type=float, default=0.8,
+                    help="GiB of free memory required beyond the model file size before a setting is run")
     ap.add_argument("--out", default="sweep_items.csv")
     args = ap.parse_args()
 
@@ -152,7 +154,7 @@ def main():
             label = f"medilite_{q}_t{t}"
             size_gib = os.path.getsize(models[q]) / 2**30
             free = mem_available_gib()
-            if free is not None and free < size_gib + 0.8:
+            if free is not None and free < size_gib + args.mem_margin:
                 print(f"[skip] {label}: model {size_gib:.1f} GiB, only {free:.1f} GiB available")
                 continue
             temp = wait_cool(args.max_start_temp, 600)
@@ -166,6 +168,9 @@ def main():
                    "--idle-secs", str(idle), "--cooldown", "0", "--out", args.out]
             if not args.mmap:
                 cmd += ["--no-mmap"]
+            fp = os.path.join(HERE, "fingerprints.json")
+            if os.path.exists(fp):
+                cmd += ["--fingerprint", fp, "--fingerprint-key", q]
             if q == "Q4_K_M":
                 cmd += ["--ref", "medilite_q4"]
             if args.pilot:

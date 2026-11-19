@@ -1,0 +1,193 @@
+[load check] Q8_0: fingerprint reproduced on attempt 1
+{"label": "medilite_Q8_0_t1", "model": "/media/olade/Yeni Birim/MediLite_Laptop/les_sweep/gguf_models/MediLITE-QA.Q8_0.gguf", "load_seconds": 339.7708072610001, "load_check": {"fingerprint_key": "Q8_0", "attempts": [{"attempt": 1, "load_seconds": 339.8, "mismatches": 0}], "load_seconds": 339.7708072610001, "verified": true}, "threads": 1, "n_ctx": 2048, "use_mmap": false, "cpu": "x86_64", "python": "3.10.12", "llama_cpp_python": "0.3.35", "gguf_chat_format": "llama-2", "prompt_format": "gguf", "cot_parse_rule": "first-answer (v2)"}
+[medilite_Q8_0_t1 / loglik] idle package power 1.71 W
+  rep 1: 20/198 items, last 31.35 s, 204.1 J
+  rep 1: 40/198 items, last 68.87 s, 443.5 J
+  rep 1: 60/198 items, last 31.90 s, 203.8 J
+  rep 1: 80/198 items, last 20.03 s, 126.9 J
+  rep 1: 100/198 items, last 24.77 s, 158.6 J
+  rep 1: 120/198 items, last 35.63 s, 226.4 J
+  rep 1: 140/198 items, last 33.17 s, 210.5 J
+  rep 1: 160/198 items, last 48.10 s, 307.9 J
+  rep 1: 180/198 items, last 127.41 s, 829.6 J
+[medilite_Q8_0_t1 / loglik] 198 new rows
+written to sweep_items.csv and sweep_items_runs.jsonl
+system: {"governor": "schedutil", "epp": null, "no_turbo": "1", "cur_mhz": [798, 798, 798, 798], "pkg_temp_c": 44.0, "mains_online": ["1"], "mem_available_gib": 5.16, "swap_used_gib": 0.0, "loadavg": "0.16 0.22 0.10 1/263 2497"}
+pass 1 order: ['Q8_0/t1']
+[load check] Q4_K_M: fingerprint reproduced on attempt 1
+[medilite_Q4_K_M_t2 / decode] idle package power 1.67 W
+  medmcqa                      prefill    5.9 tok/s  decode  3.82 tok/s  2.58 J/token
+  medmcqa                      prefill    6.1 tok/s  decode  3.82 tok/s  2.55 J/token
+  medmcqa                      prefill    6.0 tok/s  decode  3.74 tok/s  2.55 J/token
+  medqa_4options               prefill    5.4 tok/s  decode  3.33 tok/s  2.70 J/token
+  medqa_4options               prefill    5.2 tok/s  decode  3.13 tok/s  2.76 J/token
+  medqa_4options               prefill    4.9 tok/s  decode  2.93 tok/s  2.87 J/token
+  mmlu_anatomy                 prefill    4.6 tok/s  decode  3.07 tok/s  2.66 J/token
+  mmlu_anatomy                 prefill    4.7 tok/s  decode  3.15 tok/s  2.65 J/token
+  mmlu_anatomy                 prefill    4.4 tok/s  decode  3.10 tok/s  2.65 J/token
+  mmlu_clinical_knowledge      prefill    4.8 tok/s  decode  3.02 tok/s  2.67 J/token
+  mmlu_clinical_knowledge      prefill    4.4 tok/s  decode  2.94 tok/s  2.68 J/token
+  mmlu_clinical_knowledge      prefill    4.6 tok/s  decode  3.00 tok/s  2.67 J/token
+  mmlu_college_biology         prefill    4.5 tok/s  decode  2.90 tok/s  2.69 J/token
+  mmlu_college_biology         prefill    4.6 tok/s  decode  2.89 tok/s  2.69 J/token
+  mmlu_college_biology         prefill    4.5 tok/s  decode  2.87 tok/s  2.70 J/token
+  mmlu_college_medicine        prefill    4.5 tok/s  decode  2.50 tok/s  3.18 J/token
+  mmlu_college_medicine        prefill    4.3 tok/s  decode  2.97 tok/s  2.66 J/token
+  mmlu_college_medicine        prefill    4.5 tok/s  decode  2.87 tok/s  2.73 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.93 tok/s  2.68 J/token
+  mmlu_medical_genetics        prefill    4.5 tok/s  decode  2.86 tok/s  2.69 J/token
+  mmlu_medical_genetics        prefill    4.3 tok/s  decode  2.93 tok/s  2.68 J/token
+  mmlu_professional_medicine   prefill    4.4 tok/s  decode  2.79 tok/s  2.82 J/token
+  mmlu_professional_medicine   prefill    4.6 tok/s  decode  2.73 tok/s  2.81 J/token
+  mmlu_professional_medicine   prefill    4.6 tok/s  decode  2.93 tok/s  2.69 J/token
+  pubmedqa                     prefill    4.5 tok/s  decode  2.69 tok/s  2.87 J/token
+  pubmedqa                     prefill    4.4 tok/s  decode  2.79 tok/s  2.82 J/token
+  pubmedqa                     prefill    4.5 tok/s  decode  2.67 tok/s  2.94 J/token
+[load check] Q8_0: fingerprint reproduced on attempt 1
+[medilite_Q8_0_t2 / decode] idle package power 1.70 W
+  medmcqa                      prefill    6.0 tok/s  decode  2.75 tok/s  3.69 J/token
+  medmcqa                      prefill    6.0 tok/s  decode  2.75 tok/s  3.65 J/token
+  medmcqa                      prefill    5.4 tok/s  decode  2.58 tok/s  3.68 J/token
+  medqa_4options               prefill    5.1 tok/s  decode  2.36 tok/s  3.81 J/token
+  medqa_4options               prefill    4.5 tok/s  decode  2.29 tok/s  3.84 J/token
+  medqa_4options               prefill    4.6 tok/s  decode  2.13 tok/s  3.95 J/token
+  mmlu_anatomy                 prefill    4.4 tok/s  decode  2.23 tok/s  3.74 J/token
+  mmlu_anatomy                 prefill    4.4 tok/s  decode  2.17 tok/s  3.76 J/token
+  mmlu_anatomy                 prefill    4.4 tok/s  decode  2.15 tok/s  3.76 J/token
+  mmlu_clinical_knowledge      prefill    4.2 tok/s  decode  2.21 tok/s  3.76 J/token
+  mmlu_clinical_knowledge      prefill    4.3 tok/s  decode  2.13 tok/s  3.78 J/token
+  mmlu_clinical_knowledge      prefill    4.2 tok/s  decode  2.11 tok/s  3.78 J/token
+  mmlu_college_biology         prefill    4.2 tok/s  decode  2.11 tok/s  3.78 J/token
+  mmlu_college_biology         prefill    4.0 tok/s  decode  2.14 tok/s  3.77 J/token
+  mmlu_college_biology         prefill    4.3 tok/s  decode  2.10 tok/s  3.79 J/token
+  mmlu_college_medicine        prefill    4.2 tok/s  decode  1.86 tok/s  4.30 J/token
+  mmlu_college_medicine        prefill    4.5 tok/s  decode  2.08 tok/s  3.80 J/token
+  mmlu_college_medicine        prefill    4.3 tok/s  decode  2.08 tok/s  3.83 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.07 tok/s  3.79 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.05 tok/s  3.81 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.04 tok/s  3.80 J/token
+  mmlu_professional_medicine   prefill    4.2 tok/s  decode  1.99 tok/s  3.94 J/token
+  mmlu_professional_medicine   prefill    4.4 tok/s  decode  2.04 tok/s  3.91 J/token
+  mmlu_professional_medicine   prefill    4.0 tok/s  decode  2.11 tok/s  3.80 J/token
+  pubmedqa                     prefill    4.2 tok/s  decode  1.98 tok/s  3.97 J/token
+  pubmedqa                     prefill    4.1 tok/s  decode  2.04 tok/s  3.92 J/token
+  pubmedqa                     prefill    4.2 tok/s  decode  1.98 tok/s  4.04 J/token
+[load check] Q4_K_M: fingerprint reproduced on attempt 1
+[medilite_Q4_K_M_t1 / decode] idle package power 1.68 W
+  medmcqa                      prefill    3.0 tok/s  decode  2.06 tok/s  3.38 J/token
+  medmcqa                      prefill    3.0 tok/s  decode  2.07 tok/s  3.37 J/token
+  medmcqa                      prefill    3.0 tok/s  decode  2.06 tok/s  3.37 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  2.01 tok/s  3.46 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  2.00 tok/s  3.47 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  1.94 tok/s  3.59 J/token
+  mmlu_anatomy                 prefill    3.0 tok/s  decode  2.06 tok/s  3.35 J/token
+  mmlu_anatomy                 prefill    3.0 tok/s  decode  2.06 tok/s  3.35 J/token
+  mmlu_anatomy                 prefill    3.1 tok/s  decode  2.06 tok/s  3.35 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  2.07 tok/s  3.34 J/token
+  mmlu_clinical_knowledge      prefill    3.0 tok/s  decode  2.06 tok/s  3.35 J/token
+  mmlu_clinical_knowledge      prefill    3.0 tok/s  decode  2.06 tok/s  3.35 J/token
+  mmlu_college_biology         prefill    3.1 tok/s  decode  2.07 tok/s  3.33 J/token
+  mmlu_college_biology         prefill    3.0 tok/s  decode  2.07 tok/s  3.34 J/token
+  mmlu_college_biology         prefill    3.0 tok/s  decode  2.07 tok/s  3.34 J/token
+  mmlu_college_medicine        prefill    2.9 tok/s  decode  1.79 tok/s  3.90 J/token
+  mmlu_college_medicine        prefill    3.1 tok/s  decode  2.09 tok/s  3.32 J/token
+  mmlu_college_medicine        prefill    3.0 tok/s  decode  2.07 tok/s  3.35 J/token
+  mmlu_medical_genetics        prefill    3.0 tok/s  decode  2.10 tok/s  3.30 J/token
+  mmlu_medical_genetics        prefill    3.0 tok/s  decode  2.10 tok/s  3.30 J/token
+  mmlu_medical_genetics        prefill    3.0 tok/s  decode  2.09 tok/s  3.31 J/token
+  mmlu_professional_medicine   prefill    3.0 tok/s  decode  2.02 tok/s  3.44 J/token
+  mmlu_professional_medicine   prefill    3.1 tok/s  decode  2.03 tok/s  3.43 J/token
+  mmlu_professional_medicine   prefill    3.0 tok/s  decode  2.08 tok/s  3.34 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  2.00 tok/s  3.48 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  2.03 tok/s  3.44 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  1.95 tok/s  3.58 J/token
+[load check] Q8_0: fingerprint reproduced on attempt 1
+[medilite_Q8_0_t1 / decode] idle package power 1.65 W
+  medmcqa                      prefill    3.0 tok/s  decode  1.57 tok/s  4.61 J/token
+  medmcqa                      prefill    3.0 tok/s  decode  1.57 tok/s  4.56 J/token
+  medmcqa                      prefill    3.0 tok/s  decode  1.57 tok/s  4.56 J/token
+  medqa_4options               prefill    3.1 tok/s  decode  1.58 tok/s  4.60 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  1.57 tok/s  4.60 J/token
+  medqa_4options               prefill    3.0 tok/s  decode  1.54 tok/s  4.70 J/token
+  mmlu_anatomy                 prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_anatomy                 prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_anatomy                 prefill    3.1 tok/s  decode  1.62 tok/s  4.44 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  1.62 tok/s  4.46 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_clinical_knowledge      prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_college_biology         prefill    3.0 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_college_biology         prefill    3.0 tok/s  decode  1.62 tok/s  4.44 J/token
+  mmlu_college_biology         prefill    3.1 tok/s  decode  1.62 tok/s  4.44 J/token
+  mmlu_college_medicine        prefill    2.9 tok/s  decode  1.43 tok/s  5.04 J/token
+  mmlu_college_medicine        prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_college_medicine        prefill    3.1 tok/s  decode  1.60 tok/s  4.52 J/token
+  mmlu_medical_genetics        prefill    3.0 tok/s  decode  1.62 tok/s  4.46 J/token
+  mmlu_medical_genetics        prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_medical_genetics        prefill    3.1 tok/s  decode  1.62 tok/s  4.45 J/token
+  mmlu_professional_medicine   prefill    3.0 tok/s  decode  1.57 tok/s  4.60 J/token
+  mmlu_professional_medicine   prefill    3.1 tok/s  decode  1.57 tok/s  4.59 J/token
+  mmlu_professional_medicine   prefill    3.1 tok/s  decode  1.61 tok/s  4.49 J/token
+  pubmedqa                     prefill    2.9 tok/s  decode  1.55 tok/s  4.67 J/token
+  pubmedqa                     prefill    3.0 tok/s  decode  1.57 tok/s  4.62 J/token
+  pubmedqa                     prefill    2.9 tok/s  decode  1.52 tok/s  4.77 J/token
+[load check] Q4_K_M: fingerprint reproduced on attempt 1
+[medilite_Q4_K_M_t4 / decode] idle package power 1.68 W
+  medmcqa                      prefill    6.1 tok/s  decode  4.01 tok/s  2.57 J/token
+  medmcqa                      prefill    6.3 tok/s  decode  3.98 tok/s  2.54 J/token
+  medmcqa                      prefill    5.3 tok/s  decode  3.57 tok/s  2.57 J/token
+  medqa_4options               prefill    5.0 tok/s  decode  3.32 tok/s  2.72 J/token
+  medqa_4options               prefill    4.8 tok/s  decode  3.19 tok/s  2.75 J/token
+  medqa_4options               prefill    4.8 tok/s  decode  3.01 tok/s  2.86 J/token
+  mmlu_anatomy                 prefill    4.5 tok/s  decode  3.22 tok/s  2.62 J/token
+  mmlu_anatomy                 prefill    4.5 tok/s  decode  3.21 tok/s  2.62 J/token
+  mmlu_anatomy                 prefill    4.6 tok/s  decode  3.18 tok/s  2.62 J/token
+  mmlu_clinical_knowledge      prefill    4.4 tok/s  decode  3.05 tok/s  2.64 J/token
+  mmlu_clinical_knowledge      prefill    4.6 tok/s  decode  3.08 tok/s  2.64 J/token
+  mmlu_clinical_knowledge      prefill    4.5 tok/s  decode  3.08 tok/s  2.64 J/token
+  mmlu_college_biology         prefill    4.5 tok/s  decode  3.15 tok/s  2.63 J/token
+  mmlu_college_biology         prefill    4.4 tok/s  decode  3.06 tok/s  2.64 J/token
+  mmlu_college_biology         prefill    4.2 tok/s  decode  3.04 tok/s  2.64 J/token
+  mmlu_college_medicine        prefill    4.4 tok/s  decode  2.57 tok/s  3.21 J/token
+  mmlu_college_medicine        prefill    4.4 tok/s  decode  3.10 tok/s  2.63 J/token
+  mmlu_college_medicine        prefill    4.4 tok/s  decode  2.98 tok/s  2.70 J/token
+  mmlu_medical_genetics        prefill    4.5 tok/s  decode  3.04 tok/s  2.64 J/token
+  mmlu_medical_genetics        prefill    4.6 tok/s  decode  3.11 tok/s  2.64 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  3.04 tok/s  2.64 J/token
+  mmlu_professional_medicine   prefill    4.5 tok/s  decode  2.92 tok/s  2.80 J/token
+  mmlu_professional_medicine   prefill    4.5 tok/s  decode  2.90 tok/s  2.78 J/token
+  mmlu_professional_medicine   prefill    4.5 tok/s  decode  3.06 tok/s  2.67 J/token
+  pubmedqa                     prefill    4.5 tok/s  decode  2.80 tok/s  2.86 J/token
+  pubmedqa                     prefill    4.5 tok/s  decode  2.96 tok/s  2.80 J/token
+  pubmedqa                     prefill    4.5 tok/s  decode  2.77 tok/s  2.94 J/token
+[load check] Q8_0: attempt 1 FAILED (3/5 mismatches), reloading
+[load check] Q8_0: attempt 2 FAILED (3/5 mismatches), reloading
+[load check] Q8_0: fingerprint reproduced on attempt 3
+[medilite_Q8_0_t4 / decode] idle package power 1.68 W
+  medmcqa                      prefill    6.5 tok/s  decode  2.98 tok/s  3.55 J/token
+  medmcqa                      prefill    6.5 tok/s  decode  2.97 tok/s  3.53 J/token
+  medmcqa                      prefill    5.8 tok/s  decode  2.73 tok/s  3.55 J/token
+  medqa_4options               prefill    5.4 tok/s  decode  2.61 tok/s  3.68 J/token
+  medqa_4options               prefill    5.1 tok/s  decode  2.39 tok/s  3.76 J/token
+  medqa_4options               prefill    5.0 tok/s  decode  2.32 tok/s  3.86 J/token
+  mmlu_anatomy                 prefill    4.8 tok/s  decode  2.40 tok/s  3.61 J/token
+  mmlu_anatomy                 prefill    4.5 tok/s  decode  2.40 tok/s  3.62 J/token
+  mmlu_anatomy                 prefill    4.7 tok/s  decode  2.35 tok/s  3.63 J/token
+  mmlu_clinical_knowledge      prefill    4.5 tok/s  decode  2.41 tok/s  3.61 J/token
+  mmlu_clinical_knowledge      prefill    4.5 tok/s  decode  2.28 tok/s  3.65 J/token
+  mmlu_clinical_knowledge      prefill    4.7 tok/s  decode  2.30 tok/s  3.65 J/token
+  mmlu_college_biology         prefill    4.5 tok/s  decode  2.31 tok/s  3.64 J/token
+  mmlu_college_biology         prefill    4.3 tok/s  decode  2.27 tok/s  3.65 J/token
+  mmlu_college_biology         prefill    4.6 tok/s  decode  2.23 tok/s  3.66 J/token
+  mmlu_college_medicine        prefill    4.5 tok/s  decode  1.98 tok/s  4.23 J/token
+  mmlu_college_medicine        prefill    4.6 tok/s  decode  2.28 tok/s  3.65 J/token
+  mmlu_college_medicine        prefill    4.5 tok/s  decode  2.29 tok/s  3.69 J/token
+  mmlu_medical_genetics        prefill    4.4 tok/s  decode  2.27 tok/s  3.64 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.25 tok/s  3.65 J/token
+  mmlu_medical_genetics        prefill    4.2 tok/s  decode  2.18 tok/s  3.68 J/token
+  mmlu_professional_medicine   prefill    4.4 tok/s  decode  2.20 tok/s  3.80 J/token
+  mmlu_professional_medicine   prefill    4.5 tok/s  decode  2.18 tok/s  3.80 J/token
+  mmlu_professional_medicine   prefill    4.4 tok/s  decode  2.22 tok/s  3.68 J/token
+  pubmedqa                     prefill    4.4 tok/s  decode  2.17 tok/s  3.85 J/token
+  pubmedqa                     prefill    4.4 tok/s  decode  2.15 tok/s  3.83 J/token
+  pubmedqa                     prefill    4.4 tok/s  decode  2.11 tok/s  3.95 J/token
+NIGHT2_FINISHED

@@ -1,71 +1,79 @@
-"""Figure 1 of the letter: (a) energy per question (option scoring) by thread count and
-quantization; (b) energy per token for prompt processing vs generation at 2 threads, runs 1 and 2."""
-import csv, sys
-import numpy as np
+"""
+make_figure.py
+==============
+Fig. 1 of the letter, drawn directly from the raw measurement files.
+  (a) option-scoring energy per question relative to Q4_K_M at 2 threads (run 1),
+      every format x thread setting, paired ratios with 95% bootstrap intervals over questions;
+  (b) per-prompt ratio of generation energy per token, Q8_0 / Q4_K_M, against prompt length,
+      27 prompts at 1, 2 and 4 threads (verified loads).
+Usage: python make_figure.py results/raw/sweep_items.csv results/raw/decode_v2.csv figures
+"""
+import csv
+import sys
+from collections import defaultdict
+
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # noqa: E402
 
-full, rep, out = sys.argv[1], sys.argv[2], sys.argv[3]
-Q4, Q8 = "#2a78d6", "#eb6834"          # categorical slots 1-2 (validated); Q8 also hatched for grayscale
+items_csv, decode_csv, out = sys.argv[1], sys.argv[2], sys.argv[3]
+Q4, Q8 = "#2a78d6", "#eb6834"
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#d9d8d4"
+TH = {"1": ("o", "#7a7a7a"), "2": ("s", INK), "4": ("^", "#b0b0b0")}
 
-E = {r["config"]: r for r in csv.DictReader(open(f"{full}/energy_by_config.csv"))}
-def per_tok(path, cfg_suffix=""):
-    d = {}
-    for r in csv.DictReader(open(path)):
-        c = r["config"].replace("_r2", "")
-        a = d.setdefault(c, [0, 0, 0, 0])
-        a[0] += float(r["prefill_j"]); a[1] += float(r["prefill_tokens"])
-        a[2] += float(r["decode_j"]);  a[3] += float(r["decode_tokens"])
-    return {c: (a[0] / a[1], a[2] / a[3]) for c, a in d.items()}
-r1 = per_tok(f"{rep}/sweep_items_decode.csv")
-r2 = per_tok(f"{rep}/sweep_items_decode_r2.csv")
+per = defaultdict(dict)
+for r in csv.DictReader(open(items_csv)):
+    if r["mode"] == "loglik" and r["rep"] == "1":
+        per[r["model"]][(r["task"], r["doc_id"])] = float(r["joules"])
+keys = sorted(per["medilite_Q4_K_M_t2"])
+ref = np.array([per["medilite_Q4_K_M_t2"][k] for k in keys])
+rng = np.random.default_rng(0)
+idx = rng.integers(0, len(keys), (5000, len(keys)))
+
+dec = defaultdict(dict)
+for r in csv.DictReader(open(decode_csv)):
+    dec[r["config"]][(r["task"], r["doc_id"])] = r
 
 plt.rcParams.update({"font.family": "serif", "font.size": 7.5, "axes.edgecolor": MUTED, "axes.linewidth": 0.6,
-                     "xtick.color": MUTED, "ytick.color": MUTED, "axes.labelcolor": INK, "hatch.linewidth": 0.6,
-                     "pdf.fonttype": 42})
-fig, (a, b) = plt.subplots(1, 2, figsize=(3.5, 1.9), gridspec_kw={"width_ratios": [1.15, 1]})
-w = 0.36
+                     "xtick.color": MUTED, "ytick.color": MUTED, "axes.labelcolor": INK, "pdf.fonttype": 42})
+fig, (a, b) = plt.subplots(1, 2, figsize=(3.5, 1.8), gridspec_kw={"width_ratios": [1, 1.1]})
 for ax in (a, b):
-    ax.grid(axis="y", color=GRID, linewidth=0.5); ax.set_axisbelow(True)
+    ax.grid(axis="y", color=GRID, linewidth=0.5)
+    ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
 
-# (a) option-scoring energy relative to Q4_K_M at 2 threads (paired ratio, 95% bootstrap CI over questions)
+# (a)
 a.axhline(1.0, color=MUTED, linewidth=0.6, linestyle=(0, (3, 2)))
-x = np.arange(3)
-for i, (q, col, mk, lab) in enumerate([("Q4_K_M", Q4, "o", "Q4_K_M"), ("Q8_0", Q8, "s", "Q8_0")]):
-    for j, t in enumerate((1, 2, 4)):
-        r = E.get(f"medilite_{q}_t{t}")
-        xi = x[j] + (i - 0.5) * 0.3
-        if r is None:
-            a.text(xi, 1.02, "n/m", ha="center", va="bottom", fontsize=5.5, color=MUTED)
-            continue
-        m, lo, hi = float(r["ratio_vs_ref"]), float(r["ratio_lo"]), float(r["ratio_hi"])
-        a.errorbar(xi, m, yerr=[[m - lo], [hi - m]], fmt=mk, ms=3.5, color=col, mfc=col if i == 0 else "white",
-                   mec=col, mew=0.9, elinewidth=0.8, capsize=1.5, label=lab if j == 1 else None)
-        a.annotate(f"{m:.2f}", xy=(xi, m), xytext=(0, 4), textcoords="offset points", ha="center",
-                   fontsize=5.5, color=INK)
-a.set_xticks(x, ["1", "2", "4"]); a.set_xlabel("Threads"); a.set_xlim(-0.6, 2.6)
-a.set_ylabel("Energy relative to\nQ4_K_M at 2 threads")
+for i, (q, col, mk) in enumerate([("Q4_K_M", Q4, "o"), ("Q8_0", Q8, "s")]):
+    for j, t in enumerate(("1", "2", "4")):
+        v = np.array([per[f"medilite_{q}_t{t}"][k] for k in keys])
+        m = v.mean() / ref.mean()
+        bs = v[idx].mean(1) / ref[idx].mean(1)
+        lo, hi = np.percentile(bs, [2.5, 97.5])
+        x = j + (i - 0.5) * 0.32
+        a.errorbar(x, m, yerr=[[m - lo], [hi - m]], fmt=mk, ms=3.3, color=col, mfc=col if i == 0 else "white",
+                   mec=col, mew=0.9, elinewidth=0.8, capsize=1.5, label=q if j == 0 else None)
+        a.annotate(f"{m:.2f}", xy=(x, m), xytext=(0, 4), textcoords="offset points", ha="center", fontsize=5.3, color=INK)
+a.set_xticks([0, 1, 2], ["1", "2", "4"]); a.set_xlim(-0.6, 2.6); a.set_ylim(0.9, 1.45)
+a.set_xlabel("Threads"); a.set_ylabel("Energy per question\nrel. to Q4_K_M, 2 threads")
 a.set_title("(a) Option scoring", fontsize=7.5, loc="left", color=INK)
-a.legend(frameon=False, fontsize=6.5, loc="upper right", handlelength=1.0)
+a.legend(frameon=False, fontsize=6, loc="center", handlelength=1.0)
 
-# (b) energy per token, 2 threads
-x = np.arange(2)
-for i, (q, col, hatch) in enumerate([("Q4_K_M", Q4, None), ("Q8_0", Q8, "////")]):
-    c = f"medilite_{q}_t2"
-    v1, v2 = np.array(r1[c]), np.array(r2[c])
-    m = (v1 + v2) / 2
-    xi = x + (i - 0.5) * w
-    b.bar(xi, m, w * 0.92, color=col, hatch=hatch, edgecolor="white", linewidth=0.4)
-    for v in (v1, v2):
-        b.plot(xi, v, ls="none", marker="o", ms=2.2, mfc="white", mec=INK, mew=0.5)
-b.set_xticks(x, ["Prompt", "Generation"]); b.set_ylabel("Energy per token (J)")
-b.set_ylim(0, 4.5); b.set_title("(b) 2 threads", fontsize=7.5, loc="left", color=INK)
-q4g, q8g = (r1["medilite_Q4_K_M_t2"][1] + r2["medilite_Q4_K_M_t2"][1]) / 2, (r1["medilite_Q8_0_t2"][1] + r2["medilite_Q8_0_t2"][1]) / 2
-b.annotate(f"+{100 * (q8g / q4g - 1):.0f}%", xy=(1 + w / 2, max(r1["medilite_Q8_0_t2"][1], r2["medilite_Q8_0_t2"][1])), xytext=(0, 5), textcoords="offset points",
-           ha="center", fontsize=6.5, color=INK)
-fig.tight_layout(pad=0.3, w_pad=1.0)
-fig.savefig(f"{out}/fig_energy.pdf"); fig.savefig(f"{out}/fig_energy.png", dpi=300)
-print({k: [round(x, 3) for x in v] for k, v in r1.items()}, {k: [round(x, 3) for x in v] for k, v in r2.items()})
+# (b)
+for t, (mk, col) in TH.items():
+    q4, q8 = dec[f"medilite_Q4_K_M_t{t}"], dec[f"medilite_Q8_0_t{t}"]
+    ks = sorted(q4)
+    x = np.array([int(q4[k]["prefill_tokens"]) for k in ks])
+    y = np.array([float(q8[k]["decode_j"]) / float(q4[k]["decode_j"]) for k in ks])
+    b.scatter(x, y, s=7, marker=mk, facecolors=col if t != "4" else "white", edgecolors=col if t != "4" else MUTED,
+              linewidths=0.5, label=f"{t} thr.", zorder=3)
+b.set_xscale("log"); b.set_xlim(30, 1600); b.set_ylim(1.2, 1.5)
+b.set_xlabel("Prompt tokens"); b.set_ylabel("Q8_0 / Q4_K_M energy\nper generated token")
+b.set_title("(b) Generation", fontsize=7.5, loc="left", color=INK)
+b.legend(frameon=False, fontsize=5.8, loc="lower left", handlelength=0.8, ncol=3, columnspacing=0.6, handletextpad=0.2)
+fig.tight_layout(pad=0.3, w_pad=0.9)
+fig.savefig(f"{out}/fig_energy.pdf")
+fig.savefig(f"{out}/fig_energy.png", dpi=300)
+print("written", out)
